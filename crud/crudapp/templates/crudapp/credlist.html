@@ -1,0 +1,44 @@
+
+{% extends 'crudapp/base.html' %}
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    <h1>Credentials List</h1>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">State</th>
+            <th scope="col">Address</th>
+            <th scope="col"><a href="{% url 'credform'%}"><button class="btn btn-dark"><i class="far fa-plus-square"></i>Add Item</button></a>
+
+            </th>
+
+          </tr>
+        </thead>
+    {% for i in list %}
+    
+        <tbody>
+          <tr>
+            <th scope="row">{{i.name}}</th>
+            <td>{{i.email}}</td>
+            <td>{{i.pincode}}</td>
+            <td>{{i.state}}</td>
+            <td>{{i.add}}</td>
+            <td>
+                <a href="{% url 'credupdate' i.id %}"><i class="far fa-edit"></i></a>
+                <form action="{% url 'creddelete' i.id %}" method="POST" class="d-inline">{%csrf_token%}
+                    <button type="submit" class="btn"><i class="far fa-trash-alt"></i>
+                        </button>
+                </form>
+            </td>
+
+          </tr>
+         
+    {% endfor %}
+</tbody>
+</table>
+  </div>
+{% endblock content%}

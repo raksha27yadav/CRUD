@@ -1,0 +1,31 @@
+{% extends 'crudapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="alert alert-success"  role="alert">
+
+<form action="" method="post" autocomplete='off'>
+    {% csrf_token %}
+    <h1>Credentials Form</h1>
+    {{form.name|as_crispy_field}}
+    {{form.email|as_crispy_field}}
+    <div class="row">
+        <div class="col-md-2">{{form.pincode|as_crispy_field}}</div>
+        <div class="col-md-6">{{form.state|as_crispy_field}}</div>
+
+    </div>
+    {{form.add|as_crispy_field}}
+</br>
+    <div class="row">
+        <div class="col-md-2"><button type="submit" class="btn btn-primary"> <i class="fas fa-database"></i> Submit</button>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'credlist' %}"><button type="button" class="btn btn-secondary">Back to List</button>
+            </a>
+        </div>
+
+    </div>
+
+
+</form>
+</div>
+{% endblock content %}
